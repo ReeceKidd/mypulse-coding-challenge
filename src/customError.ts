@@ -41,7 +41,7 @@ export class CustomError extends Error {
 
             case ErrorType.SendAppointmentMiddleware:
                 return {
-                    code: `${ResponseCodes.warning}-03`,
+                    code: `${ResponseCodes.warning}-04`,
                     message: internalServerMessage,
                     httpStatusCode: ResponseCodes.warning,
                 };
