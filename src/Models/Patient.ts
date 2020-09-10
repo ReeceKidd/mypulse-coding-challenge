@@ -16,4 +16,4 @@ export const PatientSchema = new mongoose.Schema(
     },
 );
 
-export const PatientModel: mongoose.Model<PatientModel> = mongoose.model<PatientModel>('Patient', PatientSchema);
+export const patientModel: mongoose.Model<PatientModel> = mongoose.model<PatientModel>('Patient', PatientSchema);

@@ -16,7 +16,7 @@ export const ConsultantSchema = new mongoose.Schema(
     },
 );
 
-export const ConsultantModel: mongoose.Model<ConsultantModel> = mongoose.model<ConsultantModel>(
+export const consultantModel: mongoose.Model<ConsultantModel> = mongoose.model<ConsultantModel>(
     'Consultant',
     ConsultantSchema,
 );

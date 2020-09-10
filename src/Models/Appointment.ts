@@ -40,7 +40,7 @@ export const AppointmentSchema = new mongoose.Schema(
     },
 );
 
-export const AppointmentModel: mongoose.Model<AppointmentModel> = mongoose.model<AppointmentModel>(
+export const appointmentModel: mongoose.Model<AppointmentModel> = mongoose.model<AppointmentModel>(
     'Appointment',
     AppointmentSchema,
 );
