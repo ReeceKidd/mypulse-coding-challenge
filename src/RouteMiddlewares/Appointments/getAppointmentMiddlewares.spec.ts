@@ -1,26 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-    appointmentParamsValidationMiddleware,
+    appointmentsBodyValidationMiddleware,
     sendAppointmentsMiddleware,
     getAppointmentsMiddlewares,
 } from './getAppointmentMiddlewares';
 
-describe(`appointmentParamsValidationMiddleware`, () => {
-    const appointmentId = '5d43f0c2f4499975cb312b72';
+describe(`appointmentsBodyValidationMiddleware`, () => {
+    const consultantName = 'Dr Big Toe';
+    const date = new Date();
+    const startTime = new Date();
+    const endTime = new Date();
 
     test('calls next() when correct params are supplied', () => {
         expect.assertions(1);
         const send = jest.fn();
         const status = jest.fn(() => ({ send }));
         const request: any = {
-            params: { appointmentId },
+            body: { consultantName, date, startTime, endTime },
         };
         const response: any = {
             status,
         };
         const next = jest.fn();
 
-        appointmentParamsValidationMiddleware(request, response, next);
+        appointmentsBodyValidationMiddleware(request, response, next);
 
         expect(next).toBeCalled();
     });
@@ -49,7 +52,7 @@ describe('getAppointmentMiddlewares', () => {
         expect.assertions(3);
 
         expect(getAppointmentsMiddlewares.length).toEqual(2);
-        expect(getAppointmentsMiddlewares[0]).toEqual(appointmentParamsValidationMiddleware);
+        expect(getAppointmentsMiddlewares[0]).toEqual(appointmentsBodyValidationMiddleware);
         expect(getAppointmentsMiddlewares[1]).toEqual(sendAppointmentsMiddleware);
     });
 });

@@ -5,20 +5,21 @@ import { ResponseCodes } from '../../Server/responseCodes';
 import { CustomError, ErrorType } from '../../customError';
 import { getValidationErrorMessageSenderMiddleware } from '../../SharedMiddleware/validationErrorMessageSenderMiddleware';
 
-const appointmentParamsValidationSchema = {
-    appointmentId: Joi.string()
-        .required()
-        .length(24),
+const appointmentsBodyValidationSchema = {
+    consultantName: Joi.string(),
+    date: Joi.date(),
+    startTime: Joi.date(),
+    endTime: Joi.date(),
 };
 
-export const appointmentParamsValidationMiddleware = (
+export const appointmentsBodyValidationMiddleware = (
     request: Request,
     response: Response,
     next: NextFunction,
 ): void => {
     Joi.validate(
         request.params,
-        appointmentParamsValidationSchema,
+        appointmentsBodyValidationSchema,
         getValidationErrorMessageSenderMiddleware(request, response, next),
     );
 };
@@ -32,4 +33,4 @@ export const sendAppointmentsMiddleware = (request: Request, response: Response,
     }
 };
 
-export const getAppointmentsMiddlewares = [appointmentParamsValidationMiddleware, sendAppointmentsMiddleware];
+export const getAppointmentsMiddlewares = [appointmentsBodyValidationMiddleware, sendAppointmentsMiddleware];
