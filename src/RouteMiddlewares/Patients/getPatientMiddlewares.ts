@@ -21,10 +21,10 @@ export const patientParamsValidationMiddleware = (request: Request, response: Re
 
 export const sendPatientMiddleware = (request: Request, response: Response, next: NextFunction): void => {
     try {
-        const { patient } = response.locals;
-        response.status(ResponseCodes.success).send(patient);
+        const { patients } = response.locals;
+        response.status(ResponseCodes.success).send(patients);
     } catch (err) {
-        next(new CustomError(ErrorType.SendPatientMiddleware, err));
+        next(new CustomError(ErrorType.SendPatientsMiddleware, err));
     }
 };
 

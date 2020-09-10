@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     appointmentParamsValidationMiddleware,
-    sendAppointmentMiddleware,
-    getAppointmentMiddlewares,
+    sendAppointmentsMiddleware,
+    getAppointmentsMiddlewares,
 } from './getAppointmentMiddlewares';
 
 describe(`appointmentParamsValidationMiddleware`, () => {
@@ -31,16 +31,16 @@ describe('sendRetrieveAppointmentResponseMiddleware', () => {
         expect.assertions(3);
         const send = jest.fn();
         const status = jest.fn(() => ({ send }));
-        const appointment = { _id: 'abc' };
+        const appointments = [{ _id: 'abc' }];
         const request: any = {};
-        const response: any = { locals: { appointment }, status };
+        const response: any = { locals: { appointments }, status };
         const next = jest.fn();
 
-        sendAppointmentMiddleware(request, response, next);
+        sendAppointmentsMiddleware(request, response, next);
 
         expect(next).not.toBeCalled();
         expect(status).toBeCalledWith(200);
-        expect(send).toBeCalledWith(appointment);
+        expect(send).toBeCalledWith(appointments);
     });
 });
 
@@ -48,8 +48,8 @@ describe('getAppointmentMiddlewares', () => {
     test('are defined in the correct order', () => {
         expect.assertions(3);
 
-        expect(getAppointmentMiddlewares.length).toEqual(2);
-        expect(getAppointmentMiddlewares[0]).toEqual(appointmentParamsValidationMiddleware);
-        expect(getAppointmentMiddlewares[1]).toEqual(sendAppointmentMiddleware);
+        expect(getAppointmentsMiddlewares.length).toEqual(2);
+        expect(getAppointmentsMiddlewares[0]).toEqual(appointmentParamsValidationMiddleware);
+        expect(getAppointmentsMiddlewares[1]).toEqual(sendAppointmentsMiddleware);
     });
 });

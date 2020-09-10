@@ -23,13 +23,13 @@ export const appointmentParamsValidationMiddleware = (
     );
 };
 
-export const sendAppointmentMiddleware = (request: Request, response: Response, next: NextFunction): void => {
+export const sendAppointmentsMiddleware = (request: Request, response: Response, next: NextFunction): void => {
     try {
-        const { appointment } = response.locals;
-        response.status(ResponseCodes.success).send(appointment);
+        const { appointments } = response.locals;
+        response.status(ResponseCodes.success).send(appointments);
     } catch (err) {
-        next(new CustomError(ErrorType.SendAppointmentMiddleware, err));
+        next(new CustomError(ErrorType.SendAppointmentsMiddleware, err));
     }
 };
 
-export const getAppointmentMiddlewares = [appointmentParamsValidationMiddleware, sendAppointmentMiddleware];
+export const getAppointmentsMiddlewares = [appointmentParamsValidationMiddleware, sendAppointmentsMiddleware];

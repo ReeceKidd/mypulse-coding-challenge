@@ -3,11 +3,15 @@ import { ResponseCodes } from './Server/responseCodes';
 
 export enum ErrorType {
     InternalServerError,
-    SendConsultantMiddleware,
-    SendAppointmentMiddleware,
-    SendPatientMiddleware,
+    SendConsultantsMiddleware,
+    SendAppointmentsMiddleware,
+    SendPatientsMiddleware,
     CreateAppointmentFromRequestMiddleware,
     SendCreatedAppointmentMiddleware,
+    CreateConsultantFromRequestMiddleware,
+    SendCreatedConsultantMiddleware,
+    CreatePatientFromRequestMiddleware,
+    SendCreatedPatientMiddleware,
 }
 
 const internalServerMessage = 'Internal Server Error.';
@@ -27,21 +31,21 @@ export class CustomError extends Error {
 
     private createCustomErrorData(type: ErrorType): { code: string; message: string; httpStatusCode: ResponseCodes } {
         switch (type) {
-            case ErrorType.SendConsultantMiddleware:
+            case ErrorType.SendConsultantsMiddleware:
                 return {
                     code: `${ResponseCodes.warning}-02`,
                     message: internalServerMessage,
                     httpStatusCode: ResponseCodes.warning,
                 };
 
-            case ErrorType.SendPatientMiddleware:
+            case ErrorType.SendPatientsMiddleware:
                 return {
                     code: `${ResponseCodes.warning}-03`,
                     message: internalServerMessage,
                     httpStatusCode: ResponseCodes.warning,
                 };
 
-            case ErrorType.SendAppointmentMiddleware:
+            case ErrorType.SendAppointmentsMiddleware:
                 return {
                     code: `${ResponseCodes.warning}-04`,
                     message: internalServerMessage,
@@ -58,6 +62,34 @@ export class CustomError extends Error {
             case ErrorType.SendCreatedAppointmentMiddleware:
                 return {
                     code: `${ResponseCodes.warning}-06`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
+            case ErrorType.CreateConsultantFromRequestMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-07`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
+            case ErrorType.SendCreatedConsultantMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-08`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
+            case ErrorType.CreatePatientFromRequestMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-09`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
+            case ErrorType.SendCreatedPatientMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-10`,
                     message: internalServerMessage,
                     httpStatusCode: ResponseCodes.warning,
                 };

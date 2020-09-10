@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
-import { getConsultantMiddlewares } from '../../../RouteMiddlewares/Consultants/getConsultantMiddlewares';
+import { getConsultantsMiddlewares } from '../../../RouteMiddlewares/Consultants/getConsultantMiddlewares';
 
 export const consultantId = 'consultantId';
 
 const consultantsRouter = Router();
 
-consultantsRouter.get(`/:${consultantId}`, ...getConsultantMiddlewares);
+consultantsRouter.get(`/:${consultantId}`, ...getConsultantsMiddlewares);
 
 export { consultantsRouter };

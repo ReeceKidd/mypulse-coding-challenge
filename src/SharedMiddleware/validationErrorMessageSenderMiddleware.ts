@@ -7,7 +7,6 @@ export const getValidationErrorMessageSenderMiddleware = (request: Request, resp
     error: Error,
 ): void => {
     if (error) {
-        console.log(error);
         if (notAllowedParameterErrorRegExp.test(error.message)) {
             response.status(ResponseCodes.badRequest).send({ message: error.message });
         } else {

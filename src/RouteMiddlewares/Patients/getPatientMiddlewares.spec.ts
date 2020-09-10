@@ -31,16 +31,16 @@ describe('sendRetrievePatientResponseMiddleware', () => {
         expect.assertions(3);
         const send = jest.fn();
         const status = jest.fn(() => ({ send }));
-        const patient = { _id: 'abc' };
+        const patients = [{ _id: 'abc' }];
         const request: any = {};
-        const response: any = { locals: { patient }, status };
+        const response: any = { locals: { patients }, status };
         const next = jest.fn();
 
         sendPatientMiddleware(request, response, next);
 
         expect(next).not.toBeCalled();
         expect(status).toBeCalledWith(200);
-        expect(send).toBeCalledWith(patient);
+        expect(send).toBeCalledWith(patients);
     });
 });
 

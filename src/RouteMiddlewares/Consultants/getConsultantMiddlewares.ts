@@ -23,13 +23,13 @@ export const consultantParamsValidationMiddleware = (
     );
 };
 
-export const sendConsultantMiddleware = (request: Request, response: Response, next: NextFunction): void => {
+export const sendConsultantsMiddleware = (request: Request, response: Response, next: NextFunction): void => {
     try {
-        const { consultant } = response.locals;
-        response.status(ResponseCodes.success).send(consultant);
+        const { consultants } = response.locals;
+        response.status(ResponseCodes.success).send(consultants);
     } catch (err) {
-        next(new CustomError(ErrorType.SendConsultantMiddleware, err));
+        next(new CustomError(ErrorType.SendConsultantsMiddleware, err));
     }
 };
 
-export const getConsultantMiddlewares = [consultantParamsValidationMiddleware, sendConsultantMiddleware];
+export const getConsultantsMiddlewares = [consultantParamsValidationMiddleware, sendConsultantsMiddleware];
