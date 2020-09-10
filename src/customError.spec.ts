@@ -38,7 +38,7 @@ describe('customError', () => {
     test(`creates correct error when type is set to SendAppointmentMiddleware`, () => {
         expect.assertions(3);
 
-        const customError = new CustomError(ErrorType.SendPatientMiddleware);
+        const customError = new CustomError(ErrorType.SendAppointmentMiddleware);
         const { code, message, httpStatusCode } = customError;
 
         expect(code).toBe(`500-04`);
