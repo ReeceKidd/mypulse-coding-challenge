@@ -30,7 +30,7 @@ describe('customError', () => {
         const customError = new CustomError(ErrorType.SendPatientMiddleware);
         const { code, message, httpStatusCode } = customError;
 
-        expect(code).toBe(`500-02`);
+        expect(code).toBe(`500-03`);
         expect(message).toBe('Internal Server Error.');
         expect(httpStatusCode).toBe(500);
     });
