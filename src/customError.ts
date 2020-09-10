@@ -4,6 +4,7 @@ import { ResponseCodes } from './Server/responseCodes';
 export enum ErrorType {
     InternalServerError,
     SendConsultantMiddleware,
+    SendPatientMiddleware,
 }
 
 const internalServerMessage = 'Internal Server Error.';
@@ -26,6 +27,13 @@ export class CustomError extends Error {
             case ErrorType.SendConsultantMiddleware:
                 return {
                     code: `${ResponseCodes.warning}-02`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
+            case ErrorType.SendPatientMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-03`,
                     message: internalServerMessage,
                     httpStatusCode: ResponseCodes.warning,
                 };

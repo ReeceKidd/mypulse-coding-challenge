@@ -2,10 +2,10 @@ import { Router } from 'express';
 
 import { getConsultantMiddlewares } from '../../../RouteMiddlewares/Consultants/getConsultantMiddlewares';
 
-export const userId = 'userId';
+export const consultantId = 'consultantId';
 
-const usersRouter = Router();
+const consultantsRouter = Router();
 
-usersRouter.get(`/:${userId}`, ...getConsultantMiddlewares);
+consultantsRouter.get(`/:${consultantId}`, ...getConsultantMiddlewares);
 
-export { usersRouter };
+export { consultantsRouter };
