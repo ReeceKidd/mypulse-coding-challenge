@@ -4,6 +4,7 @@ import { ResponseCodes } from './Server/responseCodes';
 export enum ErrorType {
     InternalServerError,
     SendConsultantMiddleware,
+    SendAppointmentMiddleware,
     SendPatientMiddleware,
 }
 
@@ -32,6 +33,13 @@ export class CustomError extends Error {
                 };
 
             case ErrorType.SendPatientMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-03`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
+            case ErrorType.SendAppointmentMiddleware:
                 return {
                     code: `${ResponseCodes.warning}-03`,
                     message: internalServerMessage,
