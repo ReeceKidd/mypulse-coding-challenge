@@ -1,9 +1,9 @@
 /* eslint-disable */
 import { ResponseCodes } from './Server/responseCodes';
-import { getServiceConfig } from './getServiceConfig';
 
 export enum ErrorType {
     InternalServerError,
+    SendConsultantMiddleware,
 }
 
 const internalServerMessage = 'Internal Server Error.';
@@ -23,6 +23,13 @@ export class CustomError extends Error {
 
     private createCustomErrorData(type: ErrorType): { code: string; message: string; httpStatusCode: ResponseCodes } {
         switch (type) {
+            case ErrorType.SendConsultantMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-02`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
             default:
                 return {
                     code: `${ResponseCodes.warning}-01`,
