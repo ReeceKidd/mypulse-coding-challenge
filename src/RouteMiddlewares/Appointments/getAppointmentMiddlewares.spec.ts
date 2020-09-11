@@ -11,7 +11,7 @@ describe(`appointmentsBodyValidationMiddleware`, () => {
     const startTime = new Date();
     const endTime = new Date();
 
-    test('calls next() when correct params are supplied', () => {
+    test('calls next() when correct body is supplied', () => {
         expect.assertions(1);
         const send = jest.fn();
         const status = jest.fn(() => ({ send }));

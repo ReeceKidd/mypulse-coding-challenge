@@ -12,6 +12,8 @@ export enum ErrorType {
     SendCreatedConsultantMiddleware,
     CreatePatientFromRequestMiddleware,
     SendCreatedPatientMiddleware,
+    CreateConsultationSlotFromRequestMiddleware,
+    SendCreatedConsultationSlotMiddleware,
 }
 
 const internalServerMessage = 'Internal Server Error.';
@@ -90,6 +92,20 @@ export class CustomError extends Error {
             case ErrorType.SendCreatedPatientMiddleware:
                 return {
                     code: `${ResponseCodes.warning}-10`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
+            case ErrorType.CreateConsultationSlotFromRequestMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-11`,
+                    message: internalServerMessage,
+                    httpStatusCode: ResponseCodes.warning,
+                };
+
+            case ErrorType.SendCreatedConsultationSlotMiddleware:
+                return {
+                    code: `${ResponseCodes.warning}-12`,
                     message: internalServerMessage,
                     httpStatusCode: ResponseCodes.warning,
                 };

@@ -80,22 +80,17 @@ describe('createAppointmentMiddlewares', () => {
     });
 
     describe(`sendCreatedAppointmentMiddleware`, () => {
-        const ERROR_MESSAGE = 'error';
-        const savedAppointment = {
-            userId: 'abc',
-            streakName: 'Daily Spanish',
-            streakDescription: 'Practice spanish every day',
-            startDate: new Date(),
-        };
-
         test('responds with status 201 with appointment', () => {
             expect.assertions(3);
             const send = jest.fn();
             const status = jest.fn(() => ({ send }));
-            const appointmentResponseLocals = {
-                savedAppointment,
+            const savedAppointment = {
+                userId: 'abc',
+                streakName: 'Daily Spanish',
+                streakDescription: 'Practice spanish every day',
+                startDate: new Date(),
             };
-            const response: any = { locals: appointmentResponseLocals, status };
+            const response: any = { locals: { savedAppointment }, status };
             const request: any = {};
             const next = jest.fn();
 
@@ -107,11 +102,8 @@ describe('createAppointmentMiddlewares', () => {
 
         test('calls next with SendCreatedAppointmentMiddleware error on middleware failure', () => {
             expect.assertions(1);
-            const send = jest.fn(() => {
-                throw new Error(ERROR_MESSAGE);
-            });
-            const status = jest.fn(() => ({ send }));
-            const response: any = { locals: { savedAppointment }, status };
+
+            const response: any = {};
 
             const request: any = {};
             const next = jest.fn();

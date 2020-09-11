@@ -72,22 +72,16 @@ describe('createConsultantMiddlewares', () => {
     });
 
     describe(`sendCreatedConsultantMiddleware`, () => {
-        const ERROR_MESSAGE = 'error';
-        const savedConsultant = {
-            userId: 'abc',
-            streakName: 'Daily Spanish',
-            streakDescription: 'Practice spanish every day',
-            startDate: new Date(),
-        };
-
         test('responds with status 201 with consultant', () => {
             expect.assertions(3);
             const send = jest.fn();
             const status = jest.fn(() => ({ send }));
-            const consultantResponseLocals = {
-                savedConsultant,
+
+            const savedConsultant = {
+                consultantName,
             };
-            const response: any = { locals: consultantResponseLocals, status };
+
+            const response: any = { locals: { savedConsultant }, status };
             const request: any = {};
             const next = jest.fn();
 
@@ -99,11 +93,8 @@ describe('createConsultantMiddlewares', () => {
 
         test('calls next with SendCreatedConsultantMiddleware error on middleware failure', () => {
             expect.assertions(1);
-            const send = jest.fn(() => {
-                throw new Error(ERROR_MESSAGE);
-            });
-            const status = jest.fn(() => ({ send }));
-            const response: any = { locals: { savedConsultant }, status };
+
+            const response: any = {};
 
             const request: any = {};
             const next = jest.fn();
